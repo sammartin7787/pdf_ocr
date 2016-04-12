@@ -45,7 +45,7 @@ def save_file(file, path=''):
 		os.makedirs(temp)
 
 	filename = file._get_name()
-	filename = re.sub(r"\s+", "-", filename)
+	filename = re.sub(r"[\(,\),\s]+", "-", filename)
 
 	filename_noextension = '.'.join(filename.split('.')[:-1])
 	rand_key = randomword(5)
@@ -64,6 +64,10 @@ def save_file(file, path=''):
 	os.system("pdftotext " + temp + "/" + str(filename))
 	file_text = filename_noextension + "-" + rand_key + '.txt'
 	
+	txt_path = temp + "/" + file_text
+
+	if not os.path.exists(txt_path):
+		return 'none-' + str(page_num) + "-" + filename
 	with open(temp + "/" + file_text, 'rb') as f:
 		str_data = f.read()
 	os.remove(temp + "/" + file_text)

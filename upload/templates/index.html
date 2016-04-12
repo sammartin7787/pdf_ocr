@@ -27,8 +27,8 @@
 	    <div id="myId" class="dropzone_new">
 	    </div>
 	    <div class="label">
-		Drag and Drop a PDF here
-		<span style="font-size:18px">Scanned PDFs will be OCR’d(please ensure text is horizontal)</span>
+		Drag and Drop a PDF here<br/>
+		<span style="font-size:18px">Scanned PDFs will be OCR’d<br/>(please ensure text is horizontal)</span>
 	    </div>
 	</div>
 
@@ -107,7 +107,7 @@
 				// start to ocr pdf
 				if(check == "false")
 				{
-					estimated_time = Math.round( page_num * 7 );
+					estimated_time = Math.round( page_num * 8 );
 					
 					label = '<div style="font-size:18px">' + page_num.toString() + ' pages to OCR, estimate ' + estimated_time.toString() + ' seconds to complete</div>';
 					$(".main .label").html("OCRing..." + label);
@@ -144,11 +144,16 @@
 		                }
 		            })
 				}
-				else
+				else if(check == 'true')
 				{
 					
 					$(".main .label").html("<a href='javascript:void(0)' onclick='dropUpload()'>Drop to upload</a>");
 		        	window.location.href = 'pdf/' + temp + '/';
+				}
+				else
+				{
+					alert("This file is not a pdf or corrupted.");
+					$(".main .label").html("<a href='javascript:void(0)' onclick='dropUpload()'>Drop to upload</a>")
 				}
 
 		       	
@@ -181,8 +186,8 @@
 	function dropUpload() {
 	    if(addedFile == 1){
 		myDropzone.removeFile(fileObj);
-		$(".main .label").html('Drag and Drop a PDF here\
-									<span style="font-size:18px">Scanned PDFs will be OCR’d(please ensure text is horizontal)</span>')
+		$(".main .label").html('Drag and Drop a PDF here<br/>\
+									<span style="font-size:18px">Scanned PDFs will be OCR’d<br/>(please ensure text is horizontal)</span>')
 			addedFile = 0;
 			fileObj = null;
 	    	filename = "";
