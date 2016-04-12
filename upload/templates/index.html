@@ -107,7 +107,7 @@
 				// start to ocr pdf
 				if(check == "false")
 				{
-					estimated_time = Math.round( page_num * 5.7 );
+					estimated_time = Math.round( page_num * 7 );
 					
 					label = '<div style="font-size:18px">' + page_num.toString() + ' pages to OCR, estimate ' + estimated_time.toString() + ' seconds to complete</div>';
 					$(".main .label").html("OCRing..." + label);

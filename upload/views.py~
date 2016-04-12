@@ -30,7 +30,7 @@ def upload(request):
 
 def drop(request):
     if 'filename' in request.GET:
-        file_path = "%s/%s" % (settings.BASE_DIR + '/upload/' + settings.STATIC_URL + 'drop-pdf', request.GET['filename'])
+        file_path = "%s/%s" % (settings.BASE_DIR + settings.STATIC_URL + 'drop-pdf', request.GET['filename'])
         os.remove(file_path)
 
     return HttpResponse("")
@@ -39,7 +39,7 @@ def drop(request):
 #	return true-0-<filename> if pdf has text.
 #	return false-<pagenum>-<filename>	if pdf has no text and must be ocred.
 def save_file(file, path=''):
-	temp = settings.BASE_DIR + '/upload/' + settings.STATIC_URL + str(path)
+	temp = settings.BASE_DIR + settings.STATIC_URL + str(path)
 
 	if not os.path.exists(temp):
 		os.makedirs(temp)
@@ -73,7 +73,7 @@ def save_file(file, path=''):
 	return 'true-0-' + filename
 
 def ocr(request):
-	temp = settings.BASE_DIR + '/upload/' + settings.STATIC_URL + "drop-pdf"
+	temp = settings.BASE_DIR + settings.STATIC_URL + "drop-pdf"
 	filename = request.GET["filename"]
 	
 	start = int(round(time.time() * 1000))
@@ -84,7 +84,7 @@ def ocr(request):
 	new_filename = filename.split(".pdf")[0] + "_ocr" + ".pdf"
 
 	return HttpResponse(new_filename)
-
+# pp
 
 def count_pages(filename):
 	rxcountpages = re.compile(r"/Type\s*/Page([^s]|$)", re.MULTILINE|re.DOTALL)

@@ -116,7 +116,7 @@
 					ocr_progress = setInterval(function(){ 
 										if(ocr_progress_status <= estimated_time * 1000)
 										{
-											remain_time = Math.floor((estimated_time * 1000 - ocr_progress_status) / 1000)
+											remain_time = Math.round((estimated_time * 1000 - ocr_progress_status) / 1000)
 											label = '<div style="font-size:18px">' + page_num.toString() + ' pages to OCR, estimate ' + remain_time.toString() + ' seconds to complete</div>';
 											$(".main .label").html("OCRing..." + label);
 											ocr_progress_status += estimated_time * 10;
